@@ -6,8 +6,8 @@ import core.basesyntax.service.RegistrationServiceImpl;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RegistrationServiceTest {
     private static final RegistrationService registrationService = new RegistrationServiceImpl();
@@ -24,22 +24,23 @@ public class RegistrationServiceTest {
 
     @Test
     public void userWithUnder18_notRegistered() {
-        User user_test = new User();
-        user_test.setAge(10);
-        assertThrows(RuntimeException.class, () -> registrationService.register(user_test));
+        User userTest = new User();
+        userTest.setAge(10);
+        assertThrows(RuntimeException.class, () -> registrationService.register(userTest));
     }
 
     @Test
     public void userWithSmallLogin_notRegistered() {
-        User user_test = new User();
-        user_test.setLogin("123");
-        assertThrows(RuntimeException.class, () -> registrationService.register(user_test));
+        User userTest = new User();
+        userTest.setLogin("123");
+        assertThrows(RuntimeException.class, () -> registrationService.register(userTest));
     }
+
     @Test
     public void userWithSmallPassword_notRegistered() {
-        User user_test = new User();
-        user_test.setPassword("123");
-        assertThrows(RuntimeException.class, () -> registrationService.register(user_test));
+        User userTest = new User();
+        userTest.setPassword("123");
+        assertThrows(RuntimeException.class, () -> registrationService.register(userTest));
     }
 
     @Test
@@ -54,8 +55,8 @@ public class RegistrationServiceTest {
 
     @Test
     public void userWithExistedLogin_notRegistered() {
-        User user_test = new User();
-        user_test.setLogin("user_login");
-        assertThrows(RuntimeException.class, () -> registrationService.register(user_test));
+        User userTest = new User();
+        userTest.setLogin("user_login");
+        assertThrows(RuntimeException.class, () -> registrationService.register(userTest));
     }
 }

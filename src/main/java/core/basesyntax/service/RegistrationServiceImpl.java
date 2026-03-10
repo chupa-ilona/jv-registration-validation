@@ -1,8 +1,8 @@
 package core.basesyntax.service;
 
-import core.basesyntax.exception.UserInvalidDataException;
 import core.basesyntax.dao.StorageDao;
 import core.basesyntax.dao.StorageDaoImpl;
+import core.basesyntax.exception.UserInvalidDataException;
 import core.basesyntax.model.User;
 
 public class RegistrationServiceImpl implements RegistrationService {
@@ -10,13 +10,18 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     @Override
     public User register(User user) {
-        if ((user.getAge() < 18) && (user.getLogin().length() < 5)
-                && (user.getPassword().length() < 5)) {
+        if (user.getAge() < 18
+                || user.getLogin() == null
+                || user.getLogin().length() < 5
+                || user.getPassword() == null
+                || user.getPassword().length() < 5) {
             throw new UserInvalidDataException("User is not valid");
-        } else if (storageDao.get(user.getLogin()) != null) {
-            throw new UserInvalidDataException("User already exists");
-        } else {
-            return storageDao.add(user);
         }
+
+        if (storageDao.get(user.getLogin()) != null) {
+            throw new UserInvalidDataException("User already exists");
+        }
+
+        return storageDao.add(user);
     }
 }
