@@ -6,11 +6,12 @@ import core.basesyntax.service.RegistrationServiceImpl;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RegistrationServiceTest {
     private static final RegistrationService registrationService = new RegistrationServiceImpl();
-    User user_test = new User();
+
     @BeforeAll
     public static void setUp() {
         User user = new User();
@@ -57,5 +58,4 @@ public class RegistrationServiceTest {
         user_test.setLogin("user_login");
         assertThrows(RuntimeException.class, () -> registrationService.register(user_test));
     }
-
 }

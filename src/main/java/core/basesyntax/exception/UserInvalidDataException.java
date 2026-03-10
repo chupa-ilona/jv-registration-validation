@@ -1,4 +1,4 @@
-package core.basesyntax.Exception;
+package core.basesyntax.exception;
 
 public class UserInvalidDataException extends RuntimeException {
     public UserInvalidDataException(String message) {
